@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementHandler : MonoBehaviour
+namespace RNB.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerMovementHandler : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Vector2 _directionToMove;
+        [SerializeField] private float _force;
+        [SerializeField] private Transform _targetToMove;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Update()
+        {
+            Vector3 force = _directionToMove.normalized * _force;
+            _targetToMove.position += force * Time.deltaTime;
+        }
     }
 }
