@@ -13,6 +13,8 @@ namespace RNB.Force
     /// </summary>
     public class InfiniteGravityForce : MonoBehaviour
     {
+        [SerializeField] private bool _autoEnableGravityAtStart;
+
         [SerializeField] private float _startingGravityForceAlongY;
         [SerializeField] private float _acclerationDueToGravity;
 
@@ -21,12 +23,31 @@ namespace RNB.Force
 
         private void Awake()
         {
-            CurrentGravityForceAlongY = _startingGravityForceAlongY;
+            if(_autoEnableGravityAtStart)
+            {
+                EnableGravity();
+            }
+            else
+            {
+                DisableGravity();
+            }
         }
 
         protected virtual void FixedUpdate()
         {
             CurrentGravityForceAlongY += _acclerationDueToGravity * Time.deltaTime;
+        }
+
+        public void EnableGravity()
+        {
+            CurrentGravityForceAlongY = _startingGravityForceAlongY;
+            enabled = true;
+        }
+
+        public void DisableGravity()
+        {
+            CurrentGravityForceAlongY = 0f;
+            enabled = false;
         }
     }
 }
