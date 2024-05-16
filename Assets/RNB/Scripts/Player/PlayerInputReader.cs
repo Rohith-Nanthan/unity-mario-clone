@@ -10,10 +10,6 @@ namespace RNB.Player
     {
         private PlayerInputActions _playerInputActions;
 
-        public Vector2 MovementInput { get;private set; }
-        public event Action<Vector2> OnMoveButtonPressed;
-        public event Action<Vector2> OnMoveButtonReleased;
-
         #region Unity Life Cycle Events
         private void Awake()
         {
@@ -37,13 +33,24 @@ namespace RNB.Player
         {
             _playerInputActions.Land.Move.performed += OnMoveInputPerformed;
             _playerInputActions.Land.Move.canceled += OnMoveInputCanceled;
+
+            _playerInputActions.Land.Jump.performed += OnJumpInputPerformed;
+            _playerInputActions.Land.Jump.canceled += OnJumpInputCanceled;
         }
 
         private void UnSubscribeForInputCallbacks()
         {
             _playerInputActions.Land.Move.performed -= OnMoveInputPerformed;
             _playerInputActions.Land.Move.canceled -= OnMoveInputCanceled;
+
+            _playerInputActions.Land.Jump.performed -= OnJumpInputPerformed;
+            _playerInputActions.Land.Jump.canceled -= OnJumpInputCanceled;
         }
+
+        #region Move
+        public Vector2 MovementInput { get; private set; }
+        public event Action<Vector2> OnMoveButtonPressed;
+        public event Action<Vector2> OnMoveButtonReleased;
 
         private void OnMoveInputPerformed (InputAction.CallbackContext context)
         {
@@ -56,5 +63,21 @@ namespace RNB.Player
             MovementInput = Vector2.zero;
             OnMoveButtonReleased?.Invoke(MovementInput);
         }
+        #endregion
+
+        #region Jump
+        public event Action OnJumpPressed;
+        public event Action OnJumpReleased;
+
+        private void OnJumpInputPerformed(InputAction.CallbackContext context)
+        {
+            OnJumpPressed?.Invoke();
+        }
+
+        private void OnJumpInputCanceled(InputAction.CallbackContext context)
+        {
+            OnJumpReleased?.Invoke();
+        }
+        #endregion
     }
 }

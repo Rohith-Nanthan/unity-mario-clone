@@ -37,6 +37,15 @@ namespace RNB.Player
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""ede92bf4-92d9-4e86-8aee-d5651d78299c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -149,6 +158,17 @@ namespace RNB.Player
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5eede2f-eb52-4c07-a1f2-da5550b87a1e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -158,6 +178,7 @@ namespace RNB.Player
             // Land
             m_Land = asset.FindActionMap("Land", throwIfNotFound: true);
             m_Land_Move = m_Land.FindAction("Move", throwIfNotFound: true);
+            m_Land_Jump = m_Land.FindAction("Jump", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -220,11 +241,13 @@ namespace RNB.Player
         private readonly InputActionMap m_Land;
         private List<ILandActions> m_LandActionsCallbackInterfaces = new List<ILandActions>();
         private readonly InputAction m_Land_Move;
+        private readonly InputAction m_Land_Jump;
         public struct LandActions
         {
             private @PlayerInputActions m_Wrapper;
             public LandActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Land_Move;
+            public InputAction @Jump => m_Wrapper.m_Land_Jump;
             public InputActionMap Get() { return m_Wrapper.m_Land; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -237,6 +260,9 @@ namespace RNB.Player
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
 
             private void UnregisterCallbacks(ILandActions instance)
@@ -244,6 +270,9 @@ namespace RNB.Player
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Jump.started -= instance.OnJump;
+                @Jump.performed -= instance.OnJump;
+                @Jump.canceled -= instance.OnJump;
             }
 
             public void RemoveCallbacks(ILandActions instance)
@@ -264,6 +293,7 @@ namespace RNB.Player
         public interface ILandActions
         {
             void OnMove(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
         }
     }
 }
