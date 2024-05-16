@@ -8,6 +8,7 @@ namespace RNB.Force
     /// It holds a force value that will keep increasing indefinitely in Fixed Update at
     /// the rate of <see cref="_acclerationDueToGravity"/>. Use <see cref="CurrentGravityForce"/>
     /// to read the gravity force.
+    /// <br/>If you want to have a upper limit for gravity force, please use <see cref="MaxCappedGravityForce"/>
     /// <br/>Author: rohith.nanthan
     /// </summary>
     public class InfiniteGravityForce : MonoBehaviour
@@ -23,7 +24,7 @@ namespace RNB.Force
             CurrentGravityForceAlongY = _startingGravityForceAlongY;
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             CurrentGravityForceAlongY += _acclerationDueToGravity * Time.deltaTime;
         }
