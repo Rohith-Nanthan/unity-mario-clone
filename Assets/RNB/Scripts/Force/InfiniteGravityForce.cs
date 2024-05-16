@@ -1,3 +1,4 @@
+using RNB.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,15 +12,19 @@ namespace RNB.Force
     /// <br/>If you want to have a upper limit for gravity force, please use <see cref="MaxCappedGravityForce"/>
     /// <br/>Author: rohith.nanthan
     /// </summary>
-    public class InfiniteGravityForce : MonoBehaviour
+    public class InfiniteGravityForce : MonoBehaviour, IForce
     {
         [SerializeField] private bool _autoEnableGravityAtStart;
 
         [SerializeField] private float _startingGravityForceAlongY;
         [SerializeField] private float _acclerationDueToGravity;
 
+        #region IForce
         public float CurrentGravityForceAlongY { get; private set; }
         public Vector2 CurrentGravityForce => new Vector2(0f, -CurrentGravityForceAlongY);
+
+        public Vector2 Force => CurrentGravityForce;
+        #endregion
 
         private void Awake()
         {
