@@ -6,13 +6,13 @@ namespace RNB.Player
 {
     public class PlayerMovementHandler : MonoBehaviour
     {
-        [SerializeField] private Vector2 _directionToMove;
+        [SerializeField] private PlayerInputReader _inputReader;
         [SerializeField] private float _force;
         [SerializeField] private Transform _targetToMove;
 
         private void Update()
         {
-            Vector3 force = _directionToMove.normalized * _force;
+            Vector3 force = _inputReader.MovementInput * _force;
             _targetToMove.position += force * Time.deltaTime;
         }
     }

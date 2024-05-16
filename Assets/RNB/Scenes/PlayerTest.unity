@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 156983201}
   - component: {fileID: 156983202}
+  - component: {fileID: 156983203}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -168,9 +169,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd1e16c1a8f78140adb8a391e9de4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _directionToMove: {x: 2, y: 0}
+  _inputReader: {fileID: 156983203}
   _force: 5
   _targetToMove: {fileID: 156983201}
+--- !u!114 &156983203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156983200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48df8bb6fce3ca94b9ebf1ab30cbdf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623988262
 GameObject:
   m_ObjectHideFlags: 0
