@@ -16,8 +16,8 @@ namespace RNB.Force
     {
         [SerializeField] private bool _autoEnableGravityAtStart;
 
-        [SerializeField] private float _startingGravityForceAlongY;
-        [SerializeField] private float _acclerationDueToGravity;
+        [SerializeField, Min(0)] private float _startingGravityForceAlongY = 5f;
+        [SerializeField, Min(0)] private float _acclerationDueToGravity = 9.8f;
 
         #region IForce
         public float CurrentGravityForceAlongY { get; private set; }
@@ -43,12 +43,14 @@ namespace RNB.Force
             CurrentGravityForceAlongY += _acclerationDueToGravity * Time.deltaTime;
         }
 
+        [ContextMenu("Enable Gravity")]
         public void EnableGravity()
         {
             CurrentGravityForceAlongY = _startingGravityForceAlongY;
             enabled = true;
         }
 
+        [ContextMenu("Disable Gravity")]
         public void DisableGravity()
         {
             CurrentGravityForceAlongY = 0f;
