@@ -12,26 +12,22 @@ namespace RNB.Player.StateSwitcher
         InAir
     }
         
-    public class PlayerStateSwitcher : FSM_SwitcherBase<PlayerStates>
+    public class PlayerStateSwitcher : FSM_SwitcherBase<PlayerStates>, IInitializable
     {
         [SerializeField] private PlayerInputReader _inputReader;
 
         private IHitDetector _groundHitDetector;
         [SerializeField] private MonoBehaviour _groundHitDetectorComponent;
 
-        private void Awake()
+        protected override void Awake()
         {
             _groundHitDetector = _groundHitDetectorComponent as IHitDetector;
+            base.Awake();
         }
 
         private void OnEnable()
         {
             _groundHitDetector.OnHitStatusChange += SetPlayerStateBasedOnGroundHit;
-        }
-
-        private void Start()
-        {
-            SetPlayerStateBasedOnGroundHit(_groundHitDetector.IsHit);
         }
 
         private void OnDisable()
@@ -50,5 +46,12 @@ namespace RNB.Player.StateSwitcher
                 Fsm.SwitchState(PlayerStates.InAir);
             }
         }
+
+        #region IInitializable
+        public void Init()
+        {
+            SetPlayerStateBasedOnGroundHit(_groundHitDetector.IsHit);
+        }
+        #endregion
     }
 }

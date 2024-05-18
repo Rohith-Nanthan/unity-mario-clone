@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace RNB.Player.Force
 {
-    public class PlayerGroundMovementForce : MonoBehaviour, IForce
+    public class PlayerHorizontalInputBasedMovementForce : MonoBehaviour, IForce
     {
         #region IForce
         public Vector2 CurrentForce
@@ -16,7 +16,7 @@ namespace RNB.Player.Force
             get
             {
                 float horizontalMovementdirection = _inputReader.MovementInput.x;
-                float horizontalMovementSpeed = horizontalMovementdirection * _movementSpeedOnGround;
+                float horizontalMovementSpeed = horizontalMovementdirection * _movementSpeedOnHorizontalInputDirection;
 
                 PreviousForce = LastCalculatedForce;
                 LastCalculatedForce = new Vector2(horizontalMovementSpeed, 0f);
@@ -34,6 +34,6 @@ namespace RNB.Player.Force
         #endregion
 
         [SerializeField] private PlayerInputReader _inputReader;
-        [SerializeField] private float _movementSpeedOnGround;
+        [SerializeField] private float _movementSpeedOnHorizontalInputDirection = 5f;
     }
 }

@@ -13,7 +13,7 @@ namespace RNB.Player
     /// <summary>
     /// Author: rohith.nanthan
     /// </summary>
-    public class PlayerMovementForce : MonoBehaviour, IForce
+    public class PlayerMovementForce : MonoBehaviour, IForce, IInitializable
     {
         #region IForce
         public Vector2 CurrentForce
@@ -21,7 +21,7 @@ namespace RNB.Player
             get
             {
                 PreviousForce = LastCalculatedForce;
-                LastCalculatedForce= _currentActiveForce.CurrentForce;
+                LastCalculatedForce= GetForceBasedOnStates();
 
                 OnForceChange?.Invoke(PreviousForce, LastCalculatedForce);
 
@@ -36,49 +36,85 @@ namespace RNB.Player
         #endregion
 
         [SerializeField] private PlayerStateSwitcher _playerStateSwitcher;
+        [SerializeField] private PlayerGroundStateSwitcher _playerGroundStateSwitcher;
+        [SerializeField] private PlayerAirStateSwitcher _playerAirStateSwitcher;
 
-        [SerializeField] private PlayerGroundMovementForce _groundMovementForce;
+        [SerializeField] private PlayerHorizontalInputBasedMovementForce _groundHorizontalMovementForce;
+
+        [Header("Air")]
+        [SerializeField] private PlayerHorizontalInputBasedMovementForce _airHorizontalMovementForce;
         [SerializeField] private MaxCappedGravityForce _gravityForce;
         [SerializeField] private JumpForce _jumpForce;
 
-        private IForce _currentActiveForce;
-
-        #region Unity Life Cycle Events
         private void OnEnable()
         {
-            _playerStateSwitcher.Fsm.OnStateSwitch += OnPlayerStateChange;
-        }
-
-        private void Start()
-        {
-            SelectForceBasedOnCurrentPlayerState(_playerStateSwitcher.Fsm.CurrentState);
+            _playerAirStateSwitcher.Fsm.OnStateSwitch += ToggleForcesForAirStateChange; ;
         }
 
         private void OnDisable()
         {
-            _playerStateSwitcher.Fsm.OnStateSwitch -= OnPlayerStateChange;
-        }
-        #endregion
-
-        private void OnPlayerStateChange(PlayerStates previousState, PlayerStates currentState)
-        {
-            SelectForceBasedOnCurrentPlayerState(currentState);
+            _playerAirStateSwitcher.Fsm.OnStateSwitch -= ToggleForcesForAirStateChange; ;
         }
 
-        private void SelectForceBasedOnCurrentPlayerState(PlayerStates currentState)
+        private void ToggleForcesForAirStateChange(PlayerAirstates previousState, PlayerAirstates currentState)
         {
             switch(currentState)
             {
-                case PlayerStates.OnGround:
-                    _jumpForce.DisableJump();
-                    _currentActiveForce = _groundMovementForce;
+                case PlayerAirstates.NotInAir:
+                    switch (previousState)
+                    {
+                        case PlayerAirstates.Jumping:
+                            _jumpForce.DisableJump();
+                            break;
+
+                        case PlayerAirstates.FallingDown:
+                            _gravityForce.DisableGravity();
+                            break;
+                    }
                     break;
 
-                case PlayerStates.InAir:
+                case PlayerAirstates.Jumping:
                     _jumpForce.EnableJump();
-                    _currentActiveForce = _jumpForce;
+                    break;
+
+                case PlayerAirstates.FallingDown:
+                    _gravityForce.EnableGravity();
                     break;
             }
         }
+
+        private Vector2 GetForceBasedOnStates()
+        {
+            switch(_playerStateSwitcher.Fsm.CurrentState)
+            {
+                case PlayerStates.OnGround:
+                    return _groundHorizontalMovementForce.CurrentForce;
+
+                case PlayerStates.InAir:
+                    Vector2 verticalForce = Vector2.zero;
+                    switch(_playerAirStateSwitcher.Fsm.CurrentState)
+                    {
+                        case PlayerAirstates.FallingDown:
+                            verticalForce= _gravityForce.CurrentForce;
+                            break;
+
+                        case PlayerAirstates.Jumping:
+                            verticalForce= _jumpForce.CurrentForce;
+                            break;
+                    }
+
+                    return _airHorizontalMovementForce.CurrentForce + verticalForce;
+            }
+
+            return Vector2.zero;
+        }
+
+        #region IInitializable
+        public void Init()
+        {
+            ToggleForcesForAirStateChange(previousState: _playerAirStateSwitcher.Fsm.PreviousState,
+                currentState: _playerAirStateSwitcher.Fsm.CurrentState);
+        }
+        #endregion
     }
 }

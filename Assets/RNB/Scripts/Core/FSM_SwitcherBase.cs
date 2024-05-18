@@ -19,7 +19,7 @@ namespace RNB.Core
 #endif
         public FSM<T> Fsm { get; private set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Fsm = new FSM<T>(_initialState);
         }

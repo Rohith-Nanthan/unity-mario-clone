@@ -42,5 +42,10 @@ namespace RNB.Core
 
             OnStateSwitch?.Invoke(PreviousState, CurrentState);
         }
+
+        public void SetInitialState(T initialState)
+        {
+            PreviousState = CurrentState = initialState;
+        }
     }
 }

@@ -110,6 +110,52 @@ Transform:
   - {fileID: 3167525387925006135}
   m_Father: {fileID: 7223993852986117997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &630077043024840912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1558607410499596981}
+  - component: {fileID: 7820043695005891654}
+  m_Layer: 0
+  m_Name: Ground Movement Force
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1558607410499596981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630077043024840912}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 96558900653271238}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7820043695005891654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630077043024840912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044c9f16c2a73114abd050b5182019d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 7813995511803578834}
+  _movementSpeedOnHorizontalInputDirection: 5
 --- !u!1 &1176556791193224541
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +242,8 @@ MonoBehaviour:
   <Fsm>k__BackingField:
     <CurrentState>k__BackingField: 0
     <PreviousState>k__BackingField: 0
+  _playerStateSwitcher: {fileID: 8654802287031792928}
+  _inputReader: {fileID: 7813995511803578834}
 --- !u!1 &1541102656205946167
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7223993852986117997}
+  - component: {fileID: 7636302458540820156}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -232,6 +281,22 @@ Transform:
   - {fileID: 1025555476739353851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7636302458540820156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541102656205946167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe1cd69279201243a4d16acc39efadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateSwitcher: {fileID: 8654802287031792928}
+  _groundStateSwitcher: {fileID: 2877488441518950524}
+  _airStateSwitcher: {fileID: 350524647852578990}
+  _movementForce: {fileID: 9125773117257438278}
 --- !u!1 &2798564594244472458
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +310,7 @@ GameObject:
   - component: {fileID: 8760345126700517797}
   - component: {fileID: 2020297129423526571}
   m_Layer: 0
-  m_Name: Ground Movement Force
+  m_Name: Air Movement Force
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,11 +340,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2798564594244472458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a13bea20d9d9541819400788a15a4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 044c9f16c2a73114abd050b5182019d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 7813995511803578834}
-  _movementSpeedOnGround: 3
+  _movementSpeedOnHorizontalInputDirection: 5
 --- !u!114 &8760345126700517797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +492,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2057796455076525898}
+  - {fileID: 1558607410499596981}
   m_Father: {fileID: 7223993852986117997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5029164215250008091
@@ -456,7 +522,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStateSwitcher: {fileID: 8654802287031792928}
-  _groundMovementForce: {fileID: 3556435618099719909}
+  _playerGroundStateSwitcher: {fileID: 2877488441518950524}
+  _playerAirStateSwitcher: {fileID: 350524647852578990}
+  _groundHorizontalMovementForce: {fileID: 7820043695005891654}
+  _airHorizontalMovementForce: {fileID: 3556435618099719909}
   _gravityForce: {fileID: 8760345126700517797}
   _jumpForce: {fileID: 2020297129423526571}
 --- !u!1 &7674305833911460522

@@ -14,10 +14,10 @@ namespace RNB.Player.StateSwitcher
         Moving
     }
 
-    public class PlayerGroundStateSwitcher : FSM_SwitcherBase<PlayerGroundStates>
+    public class PlayerGroundStateSwitcher : FSM_SwitcherBase<PlayerGroundStates>, IInitializable
     {
         [SerializeField] private PlayerStateSwitcher _playerStateSwitcher;
-        [SerializeField] private PlayerGroundMovementForce _groundMovementForce;
+        [SerializeField] private PlayerHorizontalInputBasedMovementForce _groundMovementForce;
 
         #region Unity Life Cycle Events
         private void OnEnable()
@@ -35,7 +35,7 @@ namespace RNB.Player.StateSwitcher
 
         private void OnPlayerStateSwitch(PlayerStates previousState, PlayerStates currentState)
         {
-            if(currentState!=PlayerStates.OnGround)
+            if (currentState != PlayerStates.OnGround)
             {
                 Fsm.SwitchState(PlayerGroundStates.NotInGround);
             }
@@ -61,5 +61,19 @@ namespace RNB.Player.StateSwitcher
                 Fsm.SwitchState(PlayerGroundStates.Moving);
             }
         }
+
+        #region IInitializable
+        public void Init()
+        {
+            if(_playerStateSwitcher.Fsm.CurrentState !=PlayerStates.OnGround)
+            {
+                Fsm.SetInitialState(PlayerGroundStates.NotInGround);
+            }
+            else
+            {
+                Fsm.SetInitialState(PlayerGroundStates.Idle);
+            }
+        }
+        #endregion
     }
 }
