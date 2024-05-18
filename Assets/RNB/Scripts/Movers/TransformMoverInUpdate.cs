@@ -1,4 +1,5 @@
 using RNB.Core;
+using RNB.Core.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace RNB.Movers
 
         private void Update()
         {
-            _transformToMove.position += (Vector3)_force.Force * Time.deltaTime;
+            _transformToMove.position += (Vector3)_force.CurrentForce * Time.deltaTime;
         }
     }
 }

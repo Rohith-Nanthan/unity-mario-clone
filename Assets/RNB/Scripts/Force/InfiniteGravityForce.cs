@@ -1,4 +1,5 @@
 using RNB.Core;
+using RNB.Core.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,9 +22,19 @@ namespace RNB.Force
 
         #region IForce
         public float CurrentGravityForceAlongY { get; private set; }
-        public Vector2 CurrentGravityForce => new Vector2(0f, -CurrentGravityForceAlongY);
+        public Vector2 CurrentGravityForce
+        {
+            get
+            {
+                PreviousForce = LastCalculatedForce;
+                LastCalculatedForce = new Vector2(0f, -CurrentGravityForceAlongY);
+                return LastCalculatedForce;
+            }
+        }
 
-        public Vector2 Force => CurrentGravityForce;
+        public Vector2 PreviousForce { get; private set; }
+        public Vector2 LastCalculatedForce { get; private set; }
+        public Vector2 CurrentForce => CurrentGravityForce;
         #endregion
 
         private void Awake()

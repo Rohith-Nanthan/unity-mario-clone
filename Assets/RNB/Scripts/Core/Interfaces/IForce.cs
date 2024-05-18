@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RNB.Core
+namespace RNB.Core.Interfaces
 {
     /// <summary>
     /// Holds a non-normalized Vector2 that represents the force at which
@@ -11,6 +11,10 @@ namespace RNB.Core
     /// </summary>
     public interface IForce
     {
-        public Vector2 Force { get; }
+        public Vector2 PreviousForce { get; }
+        public Vector2 LastCalculatedForce { get; }
+        public Vector2 CurrentForce { get; }
+
+        public Vector2 DeltaForce => LastCalculatedForce - PreviousForce;
     }
 }
