@@ -1,5 +1,6 @@
 using RNB.Core;
 using RNB.Core.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace RNB.Force
             {
                 PreviousForce = LastCalculatedForce;
                 LastCalculatedForce = new Vector2(0f, CurrentJumpForceAlongY);
+
+                OnForceChange?.Invoke(PreviousForce, LastCalculatedForce);
                 return LastCalculatedForce;
             }
         }
@@ -29,6 +32,8 @@ namespace RNB.Force
         public Vector2 PreviousForce { get;private set; }
         public Vector2 LastCalculatedForce { get; private set; }
         public Vector2 CurrentForce => CurrentJumpForce;
+
+        public event Action<Vector2,Vector2> OnForceChange;
         #endregion
 
         private void Awake()

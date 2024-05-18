@@ -14,6 +14,9 @@ namespace RNB.Core
     {
         [SerializeField] private T _initialState;
 
+#if UNITY_EDITOR
+        [field: SerializeField]
+#endif
         public FSM<T> Fsm { get; private set; }
 
         private void Awake()

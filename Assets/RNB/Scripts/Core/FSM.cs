@@ -5,9 +5,19 @@ using UnityEngine;
 
 namespace RNB.Core
 {
+#if UNITY_EDITOR
+    [Serializable]
+#endif
     public class FSM<T> where T : Enum
     {
+#if UNITY_EDITOR
+        [field: SerializeField]
+#endif
         public T CurrentState { get; private set; }
+
+#if UNITY_EDITOR
+        [field: SerializeField]
+#endif
         public T PreviousState { get; private set; }
 
         /// <summary>

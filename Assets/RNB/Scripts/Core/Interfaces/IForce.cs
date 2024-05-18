@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,5 +17,7 @@ namespace RNB.Core.Interfaces
         public Vector2 CurrentForce { get; }
 
         public Vector2 DeltaForce => LastCalculatedForce - PreviousForce;
+
+        public event Action<Vector2,Vector2> OnForceChange;
     }
 }

@@ -3,6 +3,7 @@ using RNB.Core.Interfaces;
 using RNB.Force;
 using RNB.Player.Force;
 using RNB.Player.StateSwitcher;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,12 +23,16 @@ namespace RNB.Player
                 PreviousForce = LastCalculatedForce;
                 LastCalculatedForce= _currentActiveForce.CurrentForce;
 
+                OnForceChange?.Invoke(PreviousForce, LastCalculatedForce);
+
                 return LastCalculatedForce;
             }
         }
 
         public Vector2 PreviousForce { get; private set; }
         public Vector2 LastCalculatedForce { get; private set; }
+
+        public event Action<Vector2, Vector2> OnForceChange;
         #endregion
 
         [SerializeField] private PlayerStateSwitcher _playerStateSwitcher;
