@@ -46,7 +46,7 @@ namespace RNB.Player
         #region Unity Life Cycle Events
         private void OnEnable()
         {
-            _playerStateSwitcher.Fsm.OnStateSwitch += OnPlayrStateChange;
+            _playerStateSwitcher.Fsm.OnStateSwitch += OnPlayerStateChange;
         }
 
         private void Start()
@@ -56,11 +56,11 @@ namespace RNB.Player
 
         private void OnDisable()
         {
-            _playerStateSwitcher.Fsm.OnStateSwitch -= OnPlayrStateChange;
+            _playerStateSwitcher.Fsm.OnStateSwitch -= OnPlayerStateChange;
         }
         #endregion
 
-        private void OnPlayrStateChange(PlayerStates previousState, PlayerStates currentState)
+        private void OnPlayerStateChange(PlayerStates previousState, PlayerStates currentState)
         {
             SelectForceBasedOnCurrentPlayerState(currentState);
         }

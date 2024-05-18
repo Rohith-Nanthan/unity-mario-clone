@@ -1,5 +1,83 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &157900476967214901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1025555476739353851}
+  - component: {fileID: 5006129903350296690}
+  - component: {fileID: 5675726344628564125}
+  - component: {fileID: 746310146054842374}
+  m_Layer: 0
+  m_Name: Ground Detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1025555476739353851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157900476967214901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7223993852986117997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5006129903350296690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157900476967214901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a1ad1cdba673a4db933ad2a5e7039a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _raycastDirectionComponent: {fileID: 5675726344628564125}
+  _startingPositionComponent: {fileID: 746310146054842374}
+  _raycastDistance: 1
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &5675726344628564125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157900476967214901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c49e799587e80249ab9b206fd829804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Direction>k__BackingField: {x: 0, y: -1}
+--- !u!114 &746310146054842374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157900476967214901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f978176001e3a4e9bf9841fb7bcb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transformToFetchWorldPosition: {fileID: 1025555476739353851}
 --- !u!1 &575607552241550473
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,9 +156,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2542ba33a58c96743a4efc5d48fb5e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialState: 0
+  _initialState: 1
+  <Fsm>k__BackingField:
+    <CurrentState>k__BackingField: 0
+    <PreviousState>k__BackingField: 0
   _inputReader: {fileID: 7813995511803578834}
-  _groundHitDetectorComponent: {fileID: 0}
+  _groundHitDetectorComponent: {fileID: 5006129903350296690}
 --- !u!114 &2877488441518950524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialState: 0
+  <Fsm>k__BackingField:
+    <CurrentState>k__BackingField: 0
+    <PreviousState>k__BackingField: 0
   _playerStateSwitcher: {fileID: 8654802287031792928}
   _groundMovementForce: {fileID: 3556435618099719909}
 --- !u!114 &350524647852578990
@@ -109,6 +193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialState: 0
+  <Fsm>k__BackingField:
+    <CurrentState>k__BackingField: 0
+    <PreviousState>k__BackingField: 0
 --- !u!1 &1541102656205946167
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +229,7 @@ Transform:
   - {fileID: 96558900653271238}
   - {fileID: 4041342822169574601}
   - {fileID: 1631136215606570145}
+  - {fileID: 1025555476739353851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2798564594244472458
@@ -367,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd1e16c1a8f78140adb8a391e9de4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStateSwitcher: {fileID: 0}
+  _playerStateSwitcher: {fileID: 8654802287031792928}
   _groundMovementForce: {fileID: 3556435618099719909}
   _gravityForce: {fileID: 8760345126700517797}
   _jumpForce: {fileID: 2020297129423526571}

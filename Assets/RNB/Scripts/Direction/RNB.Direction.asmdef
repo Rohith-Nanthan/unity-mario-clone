@@ -1,0 +1,16 @@
+{
+    "name": "RNB.Direction",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c4670a74ffc710a41b822dca9dcedbe4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

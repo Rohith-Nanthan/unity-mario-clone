@@ -26,15 +26,20 @@ namespace RNB.Player.StateSwitcher
 
         private void OnEnable()
         {
-            _groundHitDetector.OnHitStatusChange += OnGroundHitStatusChange;
+            _groundHitDetector.OnHitStatusChange += SetPlayerStateBasedOnGroundHit;
+        }
+
+        private void Start()
+        {
+            SetPlayerStateBasedOnGroundHit(_groundHitDetector.IsHit);
         }
 
         private void OnDisable()
         {
-            _groundHitDetector.OnHitStatusChange -= OnGroundHitStatusChange;
+            _groundHitDetector.OnHitStatusChange -= SetPlayerStateBasedOnGroundHit;
         }
         
-        private void OnGroundHitStatusChange(bool isHit)
+        private void SetPlayerStateBasedOnGroundHit(bool isHit)
         {
             if(isHit)
             {
