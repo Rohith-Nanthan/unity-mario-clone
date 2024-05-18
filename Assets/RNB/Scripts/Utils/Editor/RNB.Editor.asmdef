@@ -1,7 +1,9 @@
 {
-    "name": "RNB.Editor",
+    "name": "RNB.Utils.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:b65cabd4e5b45b04f8eaf0073dbdef4e"
+    ],
     "includePlatforms": [
         "Editor"
     ],

@@ -1,3 +1,16 @@
 {
-	"name": "RNB.Core"
+    "name": "RNB.Core",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b65cabd4e5b45b04f8eaf0073dbdef4e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

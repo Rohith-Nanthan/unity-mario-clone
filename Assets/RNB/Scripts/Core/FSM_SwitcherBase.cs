@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using RNB.Utils;
 namespace RNB.Core
 {
     /// <summary>
@@ -15,7 +15,7 @@ namespace RNB.Core
         [SerializeField] private T _initialState;
 
 #if UNITY_EDITOR
-        [field: SerializeField]
+        [field: SerializeField, ReadOnlyInInspector]
 #endif
         public FSM<T> Fsm { get; private set; }
 
