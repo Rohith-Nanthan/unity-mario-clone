@@ -51,10 +51,12 @@ namespace RNB.Player
             switch(currentState)
             {
                 case PlayerStates.OnGround:
+                    _jumpForce.DisableJump();
                     _currentActiveForce = _groundMovementForce;
                     break;
 
                 case PlayerStates.Jumping:
+                    _jumpForce.EnableJump();
                     _currentActiveForce = _jumpForce;
                     break;
             }
