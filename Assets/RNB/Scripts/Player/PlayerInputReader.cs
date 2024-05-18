@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 namespace RNB.Player
 {
+    /// <summary>
+    /// It reads input from <see cref="PlayerInputActions"/> and exposes API to use them in context
+    /// Author: rohith.nanthan
+    /// </summary>
     public class PlayerInputReader : MonoBehaviour
     {
         private PlayerInputActions _playerInputActions;

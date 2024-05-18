@@ -18,7 +18,7 @@ namespace RNB.Core
 
         private void Awake()
         {
-            Fsm.SetInitialState(_initialState);
+            Fsm = new FSM<T>(_initialState);
         }
     }
 }

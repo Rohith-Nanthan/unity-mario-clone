@@ -7,8 +7,6 @@ namespace RNB.Core
 {
     public class FSM<T> where T : Enum
     {
-        private bool _isInitialized;
-
         public T CurrentState { get; private set; }
         public T PreviousState { get; private set; }
 
@@ -17,16 +15,15 @@ namespace RNB.Core
         /// <br/>Param 1 - Previous State
         /// <br/>Param 2 - Current State
         /// </summary>
-        public event Action<T,T> OnStateSwitch;
+        public event Action<T, T> OnStateSwitch;
+
+        public FSM(T initialState)
+        {
+            PreviousState = CurrentState = initialState;
+        }
 
         public void SwitchState(T newState)
         {
-            if(!_isInitialized)
-            {
-                Debug.LogError("Switching state without initializing");
-                return;
-            }
-
             if (newState.Equals(CurrentState))
             {
                 return;
@@ -37,12 +34,5 @@ namespace RNB.Core
 
             OnStateSwitch?.Invoke(PreviousState, CurrentState);
         }
-
-        public void SetInitialState(T initialState)
-        {
-            PreviousState = CurrentState = initialState;
-            _isInitialized = true;
-        }
-
     }
 }
