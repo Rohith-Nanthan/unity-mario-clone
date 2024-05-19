@@ -7,12 +7,13 @@ namespace RNB.Core.Interfaces
 {
     public interface IHealth
     {
-        public int Health { get; }
+        public int PreviousHealth { get; }
+        public int CurrentHealth { get; }
 
         public int MaxHealth { get; }
 
-        public int IncreaseHealth(int healtToAdd);
-        public int DecreaseHealth(int healtToRemove);
+        public int IncreaseHealth(int healthToAdd);
+        public int DecreaseHealth(int healthToRemove);
 
         /// <summary>
         /// Invoked when health inreases or decreases
