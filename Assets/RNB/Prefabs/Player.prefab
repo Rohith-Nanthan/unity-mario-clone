@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe1cd69279201243a4d16acc39efadf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlConfig: {fileID: 0}
+  _controlConfig: {fileID: 11400000, guid: 2eb2365e505fc6c4caef0d8c1eab7ff1, type: 2}
   _stateSwitcher: {fileID: 8654802287031792928}
   _groundStateSwitcher: {fileID: 2877488441518950524}
   _airStateSwitcher: {fileID: 350524647852578990}
@@ -433,9 +433,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _autoEnableGravityAtStart: 0
-  _startingGravityForceAlongY: 5
+  _startingGravitySpeed: 5
   _acclerationDueToGravity: 9.8
-  _maxCapForGravityForceAlongY: 30
+  _maxCapForGravitySpeed: 30
 --- !u!114 &2020297129423526571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _autoEnableJumpAtStart: 0
-  _startingJumpForceAlongY: 8
+  _startingJumpSpeed: 20
   _deAccleratingDueToGravity: 9.8
 --- !u!1 &6324435800414763303
 GameObject:
