@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe1cd69279201243a4d16acc39efadf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controlConfig: {fileID: 0}
   _stateSwitcher: {fileID: 8654802287031792928}
   _groundStateSwitcher: {fileID: 2877488441518950524}
   _airStateSwitcher: {fileID: 350524647852578990}
@@ -598,10 +599,10 @@ MonoBehaviour:
   _playerStateSwitcher: {fileID: 8654802287031792928}
   _playerGroundStateSwitcher: {fileID: 2877488441518950524}
   _playerAirStateSwitcher: {fileID: 350524647852578990}
-  _groundHorizontalMovementForce: {fileID: 7820043695005891654}
-  _airHorizontalMovementForce: {fileID: 3556435618099719909}
-  _gravityForce: {fileID: 8760345126700517797}
-  _jumpForce: {fileID: 2020297129423526571}
+  <GroundHorizontalMovementForce>k__BackingField: {fileID: 7820043695005891654}
+  <AirHorizontalMovementForce>k__BackingField: {fileID: 3556435618099719909}
+  <GravityForce>k__BackingField: {fileID: 8760345126700517797}
+  <JumpForce>k__BackingField: {fileID: 2020297129423526571}
 --- !u!1 &7674305833911460522
 GameObject:
   m_ObjectHideFlags: 0

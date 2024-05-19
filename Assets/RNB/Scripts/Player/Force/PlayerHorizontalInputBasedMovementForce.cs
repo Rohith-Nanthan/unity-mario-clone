@@ -35,5 +35,7 @@ namespace RNB.Player.Force
 
         [SerializeField] private PlayerInputReader _inputReader;
         [SerializeField] private float _movementSpeedOnHorizontalInputDirection = 5f;
+
+        public void UpdateMovementSpeed(float newSpeed) => _movementSpeedOnHorizontalInputDirection = newSpeed;
     }
 }
