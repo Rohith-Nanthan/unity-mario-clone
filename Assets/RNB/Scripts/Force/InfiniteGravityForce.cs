@@ -18,17 +18,17 @@ namespace RNB.Force
     {
         [SerializeField] private bool _autoEnableGravityAtStart;
 
-        [SerializeField, Min(0)] private float _startingGravityForceAlongY = 5f;
+        [SerializeField, Min(0)] private float _startingGravitySpeed = 5f;
         [SerializeField, Min(0)] private float _acclerationDueToGravity = 9.8f;
 
         #region IForce
-        public float CurrentGravityForceAlongY { get; private set; }
+        public float CurrentGravitySpeed { get; private set; }
         public Vector2 CurrentGravityForce
         {
             get
             {
                 PreviousForce = LastCalculatedForce;
-                LastCalculatedForce = new Vector2(0f, -CurrentGravityForceAlongY);
+                LastCalculatedForce = new Vector2(0f, -CurrentGravitySpeed);
 
                 OnForceChange?.Invoke(PreviousForce, LastCalculatedForce);
 
@@ -57,21 +57,24 @@ namespace RNB.Force
 
         protected virtual void FixedUpdate()
         {
-            CurrentGravityForceAlongY += _acclerationDueToGravity * Time.deltaTime;
+            CurrentGravitySpeed += _acclerationDueToGravity * Time.deltaTime;
         }
 
         [ContextMenu("Enable Gravity")]
         public void EnableGravity()
         {
-            CurrentGravityForceAlongY = _startingGravityForceAlongY;
+            CurrentGravitySpeed = _startingGravitySpeed;
             enabled = true;
         }
 
         [ContextMenu("Disable Gravity")]
         public void DisableGravity()
         {
-            CurrentGravityForceAlongY = 0f;
+            CurrentGravitySpeed = 0f;
             enabled = false;
         }
+
+        public void UpdateStartingGravitySpeed(float newSpeed) => _startingGravitySpeed = newSpeed;
+        public void UpdateAcclerationDueToGravity(float newGravityAccleration) => _acclerationDueToGravity = newGravityAccleration;
     }
 }

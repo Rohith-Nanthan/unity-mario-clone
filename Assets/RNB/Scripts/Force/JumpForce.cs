@@ -11,18 +11,18 @@ namespace RNB.Force
     {
         [SerializeField] private bool _autoEnableJumpAtStart;
 
-        [SerializeField,Min(0)] private float _startingJumpForceAlongY = 20f;
+        [SerializeField,Min(0)] private float _startingJumpSpeed = 20f;
         [SerializeField,Min(0)] private float _deAccleratingDueToGravity = 9.8f;
 
         #region IForce
-        public float CurrentJumpForceAlongY { get; private set; }
+        public float CurrentJumpSpeed { get; private set; }
 
         public Vector2 CurrentJumpForce
         {
             get
             {
                 PreviousForce = LastCalculatedForce;
-                LastCalculatedForce = new Vector2(0f, CurrentJumpForceAlongY);
+                LastCalculatedForce = new Vector2(0f, CurrentJumpSpeed);
 
                 OnForceChange?.Invoke(PreviousForce, LastCalculatedForce);
                 return LastCalculatedForce;
@@ -50,19 +50,22 @@ namespace RNB.Force
 
         private void FixedUpdate()
         {
-            CurrentJumpForceAlongY -= _deAccleratingDueToGravity * Time.deltaTime;
+            CurrentJumpSpeed -= _deAccleratingDueToGravity * Time.deltaTime;
         }
 
         public void EnableJump()
         {
-            CurrentJumpForceAlongY = _startingJumpForceAlongY;
+            CurrentJumpSpeed = _startingJumpSpeed;
             enabled = true;
         }
 
         public void DisableJump()
         {
-            CurrentJumpForceAlongY = 0f;
+            CurrentJumpSpeed = 0f;
             enabled = false;
         }
+
+        public void UpdateStartingJumpSpeed(float newJumpSpeed) => _startingJumpSpeed = newJumpSpeed;
+        public void UpdateJumpDeAccleration(float newDeAccleration) => _deAccleratingDueToGravity = newDeAccleration;
     }
 }

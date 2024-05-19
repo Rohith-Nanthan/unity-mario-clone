@@ -39,12 +39,12 @@ namespace RNB.Player
         [SerializeField] private PlayerGroundStateSwitcher _playerGroundStateSwitcher;
         [SerializeField] private PlayerAirStateSwitcher _playerAirStateSwitcher;
 
-        [SerializeField] private PlayerHorizontalInputBasedMovementForce _groundHorizontalMovementForce;
+        [field: SerializeField] public PlayerHorizontalInputBasedMovementForce GroundHorizontalMovementForce { get; private set; }
 
-        [Header("Air")]
-        [SerializeField] private PlayerHorizontalInputBasedMovementForce _airHorizontalMovementForce;
-        [SerializeField] private MaxCappedGravityForce _gravityForce;
-        [SerializeField] private JumpForce _jumpForce;
+        [field: Header("Air")]
+        [field: SerializeField] public PlayerHorizontalInputBasedMovementForce AirHorizontalMovementForce { get; private set; }
+        [field: SerializeField] public MaxCappedGravityForce GravityForce { get; private set; }
+        [field: SerializeField] public JumpForce JumpForce { get; private set; }
 
         private void OnEnable()
         {
@@ -64,21 +64,21 @@ namespace RNB.Player
                     switch (previousState)
                     {
                         case PlayerAirstates.Jumping:
-                            _jumpForce.DisableJump();
+                            JumpForce.DisableJump();
                             break;
 
                         case PlayerAirstates.FallingDown:
-                            _gravityForce.DisableGravity();
+                            GravityForce.DisableGravity();
                             break;
                     }
                     break;
 
                 case PlayerAirstates.Jumping:
-                    _jumpForce.EnableJump();
+                    JumpForce.EnableJump();
                     break;
 
                 case PlayerAirstates.FallingDown:
-                    _gravityForce.EnableGravity();
+                    GravityForce.EnableGravity();
                     break;
             }
         }
@@ -88,22 +88,22 @@ namespace RNB.Player
             switch(_playerStateSwitcher.Fsm.CurrentState)
             {
                 case PlayerStates.OnGround:
-                    return _groundHorizontalMovementForce.CurrentForce;
+                    return GroundHorizontalMovementForce.CurrentForce;
 
                 case PlayerStates.InAir:
                     Vector2 verticalForce = Vector2.zero;
                     switch(_playerAirStateSwitcher.Fsm.CurrentState)
                     {
                         case PlayerAirstates.FallingDown:
-                            verticalForce= _gravityForce.CurrentForce;
+                            verticalForce= GravityForce.CurrentForce;
                             break;
 
                         case PlayerAirstates.Jumping:
-                            verticalForce= _jumpForce.CurrentForce;
+                            verticalForce= JumpForce.CurrentForce;
                             break;
                     }
 
-                    return _airHorizontalMovementForce.CurrentForce + verticalForce;
+                    return AirHorizontalMovementForce.CurrentForce + verticalForce;
             }
 
             return Vector2.zero;

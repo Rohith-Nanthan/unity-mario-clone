@@ -11,16 +11,18 @@ namespace RNB.Force
     /// </summary>
     public class MaxCappedGravityForce : InfiniteGravityForce
     {
-        [SerializeField] private float _maxCapForGravityForceAlongY;
+        [SerializeField] private float _maxCapForGravitySpeed = 30f;
 
         protected override void FixedUpdate()
         {
-            if (CurrentGravityForceAlongY >= _maxCapForGravityForceAlongY)
+            if (CurrentGravitySpeed >= _maxCapForGravitySpeed)
             {
                 return;
             }
 
             base.FixedUpdate();
         }
+
+        public void UpdateMaxCapForGravitySpeed(float newMaxCap) => _maxCapForGravitySpeed = newMaxCap;
     }
 }
