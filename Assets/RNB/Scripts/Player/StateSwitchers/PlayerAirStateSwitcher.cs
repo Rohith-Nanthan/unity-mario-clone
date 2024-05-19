@@ -37,6 +37,7 @@ namespace RNB.Player.StateSwitcher
             if (_playerStateSwitcher.Fsm.CurrentState == PlayerStates.OnGround)
             {
                 Fsm.SwitchState(PlayerAirstates.Jumping);
+                _playerStateSwitcher.Fsm.SwitchState(PlayerStates.InAir);
             }
         }
 

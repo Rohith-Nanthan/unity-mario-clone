@@ -18,6 +18,8 @@ namespace RNB.Core
 #endif
         public T PreviousState { get; private set; }
 
+        private bool _isInitialized;
+
         /// <summary>
         /// Invoked when there is a successful state change
         /// <br/>Param 1 - Previous State
@@ -25,27 +27,32 @@ namespace RNB.Core
         /// </summary>
         public event Action<T, T> OnStateSwitch;
 
-        public FSM(T initialState)
-        {
-            PreviousState = CurrentState = initialState;
-        }
-
         public void SwitchState(T newState)
         {
+            if(!_isInitialized)
+            {
+                Debug.LogError("Not initalized yet");
+                return;
+            }
+
             if (newState.Equals(CurrentState))
             {
+                Debug.LogWarning($"Cannot switch to same state: {newState}");
                 return;
             }
 
             PreviousState = CurrentState;
             CurrentState = newState;
 
+            Debug.Log($"Switching state: {PreviousState}, {CurrentState}");
             OnStateSwitch?.Invoke(PreviousState, CurrentState);
         }
 
         public void SetInitialState(T initialState)
         {
             PreviousState = CurrentState = initialState;
+            _isInitialized = true;
+            Debug.Log($"Setting initial state: {initialState}");
         }
     }
 }

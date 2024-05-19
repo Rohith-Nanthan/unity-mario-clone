@@ -17,11 +17,6 @@ namespace RNB.Core
 #if UNITY_EDITOR
         [field: SerializeField, ReadOnlyInInspector]
 #endif
-        public FSM<T> Fsm { get; private set; }
-
-        protected virtual void Awake()
-        {
-            Fsm = new FSM<T>(_initialState);
-        }
+        public FSM<T> Fsm { get; private set; } = new FSM<T>();
     }
 }
