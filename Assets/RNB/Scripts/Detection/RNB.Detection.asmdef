@@ -1,10 +1,8 @@
 {
-    "name": "RNB.Player",
+    "name": "RNB.Detection",
     "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:c4670a74ffc710a41b822dca9dcedbe4",
-        "GUID:523a5832373177048aad6c08d86cf054"
+        "GUID:c4670a74ffc710a41b822dca9dcedbe4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
