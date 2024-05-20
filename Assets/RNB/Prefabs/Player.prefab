@@ -256,8 +256,7 @@ GameObject:
   - component: {fileID: 130665813008230049}
   - component: {fileID: 2888422298408286071}
   - component: {fileID: 7636302458540820156}
-  - component: {fileID: 4402127237907936185}
-  - component: {fileID: 5037524227252613407}
+  - component: {fileID: 8341252870704185036}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -374,7 +373,7 @@ MonoBehaviour:
   _groundStateSwitcher: {fileID: 2877488441518950524}
   _airStateSwitcher: {fileID: 350524647852578990}
   _movementForce: {fileID: 9125773117257438278}
---- !u!114 &4402127237907936185
+--- !u!114 &8341252870704185036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,23 +382,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1541102656205946167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e788bed537590c48950be76034eb7c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bd2266a6c4ecfd41804c894f5558440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 10
---- !u!114 &5037524227252613407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541102656205946167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144d50b797b035b41a1b80ce7173592d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healtComponent: {fileID: 4402127237907936185}
+  _playerHealth: {fileID: 11400000, guid: 839265039e5ad974c8e2e69ff643f4ae, type: 2}
+  _playerInventory: {fileID: 11400000, guid: ecdae94ceb7f0594ba26c994c5f62ff0, type: 2}
 --- !u!1 &2798564594244472458
 GameObject:
   m_ObjectHideFlags: 0

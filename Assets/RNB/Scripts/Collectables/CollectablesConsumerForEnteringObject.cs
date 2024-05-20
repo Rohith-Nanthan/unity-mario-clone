@@ -26,12 +26,18 @@ namespace RNB.Collectables
 #if UNITY_EDITOR
             _lastEnteredObject = collider.gameObject;
 #endif
-            IInventory inventory = collider.GetComponent<IInventory>();
-            if (inventory != null)
+            IInventoryHolder inventoryHolder = collider.GetComponent<IInventoryHolder>();
+            if (inventoryHolder != null)
             {
 #if UNITY_EDITOR
                 _lastFetchedInventory = collider.gameObject;
 #endif
+                IInventory inventory = inventoryHolder.Inventory;
+                if (inventory == null)
+                {
+                    Debug.LogError("Inventory not found in inventory holder");
+                    return;
+                }
                 _collectable.Collect(inventory);
             }
         }

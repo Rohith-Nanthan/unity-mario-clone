@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RNB.Player
 {
+    [CreateAssetMenu(fileName = "NewPlayerHealth", menuName = "RNB/PlayerScriptable/PlayerHealth", order = 2)]
     public class PlayerHealthScriptable : HealthScriptableBase
     {
 
