@@ -7,8 +7,6 @@ namespace RNB.Core.Interfaces
 {
     public interface IInventory
     {
-        public IHealth Health { get; }
-
         public int PreviousScore { get; }
         public int CurrentScore { get; }
 
