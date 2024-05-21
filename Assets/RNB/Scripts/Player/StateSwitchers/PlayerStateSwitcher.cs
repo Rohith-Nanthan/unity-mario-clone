@@ -13,7 +13,7 @@ namespace RNB.Player.StateSwitcher
         InAir
     }
         
-    public class PlayerStateSwitcher : FSM_SwitcherBase<PlayerStates>, IInitializable
+    public class PlayerStateSwitcher : FSM_SwitcherBase<PlayerStates>
     {
         [SerializeField] private PlayerInputReader _inputReader;
 
@@ -50,7 +50,7 @@ namespace RNB.Player.StateSwitcher
         }
 
         #region IInitializable
-        public void Init()
+        public override void Init()
         {
             if (_groundHitDetector.IsHit)
             {

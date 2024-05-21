@@ -3,20 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RNB.Utils;
+using RNB.Core.Interfaces;
+
 namespace RNB.Core
 {
     /// <summary>
-    /// Initizlizes the FSM at Awake and exposes all the APIs of FSM
+    /// It holds a FSM and initializes it to default state.
     /// <br/>Author: rohith.nanthan
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class FSM_SwitcherBase<T> : MonoBehaviour where T : Enum
+    public abstract class FSM_SwitcherBase<T> : MonoBehaviour, IInitializable where T : Enum
     {
-        [SerializeField] private T _initialState;
+        [SerializeField] private T _defaultInitialState;
 
 #if UNITY_EDITOR
         [field: SerializeField, ReadOnlyInInspector]
 #endif
         public FSM<T> Fsm { get; private set; } = new FSM<T>();
+
+        public virtual void Init()
+        {
+            Fsm.SetInitialState(_defaultInitialState);
+        }
+
     }
 }

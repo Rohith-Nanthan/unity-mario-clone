@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace RNB.Core
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public abstract class InventoryScriptableBase : ScriptableObject, IInventory
     {
 #if UNITY_EDITOR

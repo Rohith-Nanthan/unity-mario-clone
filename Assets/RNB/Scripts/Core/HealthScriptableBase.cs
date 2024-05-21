@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace RNB.Core
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public abstract class HealthScriptableBase : ScriptableObject, IHealth, IInitializable
     {
         [field: SerializeField] public int MaxHealth { get; private set; }
