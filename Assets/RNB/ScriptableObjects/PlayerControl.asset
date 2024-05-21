@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerControl
   m_EditorClassIdentifier: 
   _MovementSpeedInGround: 5
-  _MovementSpeedInAir: 5
+  _MovementSpeedInAir: 3
   _InitialFallingDownSpeed: 5
   _FallingDownAccleration: 9.8
-  _MaxFallingDownSpeed: 30
-  _InitialJumpSpeed: 8
-  _JumpSpeedDeaccleration: 9.8
+  _MaxFallingDownSpeed: 20
+  _InitialJumpSpeed: 25
+  _JumpSpeedDeaccleration: 50
