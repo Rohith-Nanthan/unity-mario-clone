@@ -66,7 +66,7 @@ namespace RNB.Core
         #region IInitializable
         public void Init()
         {
-            _currentHealth = MaxHealth;
+            PreviousHealth = _currentHealth = MaxHealth;
         }
         #endregion
     }
