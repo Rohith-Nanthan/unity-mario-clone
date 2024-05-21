@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace RNB.Core.Interfaces
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public interface ICollectable
     {
         public void Collect(IInventory inventory);

@@ -538,6 +538,10 @@ PrefabInstance:
       value: SolidPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 6851053172452598338, guid: 251eb077da1df21408070010ef351384, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 17.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851053172452598338, guid: 251eb077da1df21408070010ef351384, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.07
       objectReference: {fileID: 0}
