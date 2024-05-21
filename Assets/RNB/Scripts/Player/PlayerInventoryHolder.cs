@@ -15,7 +15,9 @@ namespace RNB.Player
 
         private void Awake()
         {
+            _playerHealth.Init();
             Health = _playerHealth as IHealth;
+
             Inventory = _playerInventory as IInventory;
         }
     }
