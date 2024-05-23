@@ -1,5 +1,6 @@
 using RNB.Core;
 using RNB.Core.Interfaces;
+using RNB.Player.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ namespace RNB.Player.StateSwitcher
         Jumping
     }
 
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class PlayerAirStateSwitcher : FSM_SwitcherBase<PlayerAirstates>
     {
         [SerializeField] private PlayerStateSwitcher _playerStateSwitcher;

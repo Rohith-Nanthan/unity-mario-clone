@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RNB.Player
+namespace RNB.Player.Force
 {
     /// <summary>
     /// Author: rohith.nanthan

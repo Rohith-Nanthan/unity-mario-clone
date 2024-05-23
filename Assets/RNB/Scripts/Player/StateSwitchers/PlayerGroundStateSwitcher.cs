@@ -14,6 +14,9 @@ namespace RNB.Player.StateSwitcher
         Moving
     }
 
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class PlayerGroundStateSwitcher : FSM_SwitcherBase<PlayerGroundStates>
     {
         [SerializeField] private PlayerStateSwitcher _playerStateSwitcher;

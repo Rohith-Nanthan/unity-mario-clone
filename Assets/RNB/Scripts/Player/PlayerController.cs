@@ -1,3 +1,5 @@
+using RNB.Player.Force;
+using RNB.Player.Scriptables;
 using RNB.Player.StateSwitcher;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,9 +7,12 @@ using UnityEngine;
 
 namespace RNB.Player
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerControlScriptableObject _controlConfig;
+        [SerializeField] private PlayerControlScriptable _controlConfig;
 
         [SerializeField] private PlayerStateSwitcher _stateSwitcher;
         [SerializeField] private PlayerGroundStateSwitcher _groundStateSwitcher;

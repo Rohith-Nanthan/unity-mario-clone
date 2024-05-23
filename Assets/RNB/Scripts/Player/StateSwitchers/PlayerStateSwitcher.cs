@@ -1,5 +1,6 @@
 using RNB.Core;
 using RNB.Core.Interfaces;
+using RNB.Player.Input;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,10 @@ namespace RNB.Player.StateSwitcher
         OnGround,
         InAir
     }
-        
+
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class PlayerStateSwitcher : FSM_SwitcherBase<PlayerStates>
     {
         [SerializeField] private PlayerInputReader _inputReader;

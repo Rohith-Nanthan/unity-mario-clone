@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RNB.Player
+namespace RNB.Player.Scriptables
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     [CreateAssetMenu(fileName = "NewPlayerControl", menuName = "RNB/PlayerScriptable/PlayerControl", order = 1)]
-    public class PlayerControlScriptableObject : ScriptableObject
+    public class PlayerControlScriptable : ScriptableObject
     {
         public float _MovementSpeedInGround = 5f;
         public float _MovementSpeedInAir = 5f;
