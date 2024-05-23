@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace RNB.Platforms
 {
+    /// <summary>
+    /// It damages any object that enters into the trigger with <see cref="IInventoryHolder"/>
+    /// <br/>Author: rohith.nanthan
+    /// </summary>
     public class EnteringObjectDamager : MonoBehaviour
     {
         [SerializeField] private int _damageAmount;

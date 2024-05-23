@@ -2,6 +2,7 @@
     "name": "RNB.Force",
     "rootNamespace": "",
     "references": [
+        "GUID:b65cabd4e5b45b04f8eaf0073dbdef4e",
         "GUID:c4670a74ffc710a41b822dca9dcedbe4"
     ],
     "includePlatforms": [],
