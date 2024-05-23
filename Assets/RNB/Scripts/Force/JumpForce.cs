@@ -7,6 +7,14 @@ using UnityEngine;
 
 namespace RNB.Force
 {
+    /// <summary>
+    /// This holds a force that behaves like a jump arc where you start jumping with a intital upward force and
+    /// it slowly decreases until reaching the apex point where the velocity is momentarily zero and then you start falling
+    /// down with increasing downward force.
+    /// <br/>You can start jumping by calling <see cref="EnableJump"/> and stop jumping by calling <see cref="DisableJump"/>
+    /// <br/>Note: This only gives you force along Y
+    /// <br/>Author: rohith.nanthan
+    /// </summary>
     public class JumpForce : MonoBehaviour, IForce
     {
         [SerializeField] private bool _autoEnableJumpAtStart;
