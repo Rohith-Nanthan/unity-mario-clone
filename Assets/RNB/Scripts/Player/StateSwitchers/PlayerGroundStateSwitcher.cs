@@ -14,7 +14,10 @@ namespace RNB.Player.StateSwitcher
         Moving
     }
 
-    public class PlayerGroundStateSwitcher : FSM_SwitcherBase<PlayerGroundStates>, IInitializable
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
+    public class PlayerGroundStateSwitcher : FSM_SwitcherBase<PlayerGroundStates>
     {
         [SerializeField] private PlayerStateSwitcher _playerStateSwitcher;
         [SerializeField] private PlayerHorizontalInputBasedMovementForce _groundMovementForce;
@@ -63,7 +66,7 @@ namespace RNB.Player.StateSwitcher
         }
 
         #region IInitializable
-        public void Init()
+        public override void Init()
         {
             if(_playerStateSwitcher.Fsm.CurrentState !=PlayerStates.OnGround)
             {

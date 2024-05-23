@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace RNB.Player
+namespace RNB.Player.Input
 {
     /// <summary>
     /// It reads input from <see cref="PlayerInputActions"/> and exposes API to use them in context

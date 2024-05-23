@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace RNB.Collectables
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class CollectableCoin : MonoBehaviour, ICollectable
     {
         [SerializeField] private GameObject _objectToDestroyOnCollection;

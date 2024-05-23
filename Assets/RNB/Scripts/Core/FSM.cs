@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace RNB.Core
 {
+    /// <summary>
+    /// Finite State Machine that will hold current and previous state
+    /// and exposes callbacks for state change
+    /// <br/>Author: rohith.nanthan
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
 #if UNITY_EDITOR
     [Serializable]
 #endif
@@ -37,14 +43,12 @@ namespace RNB.Core
 
             if (newState.Equals(CurrentState))
             {
-                Debug.LogWarning($"Cannot switch to same state: {newState}");
                 return;
             }
 
             PreviousState = CurrentState;
             CurrentState = newState;
 
-            Debug.Log($"Switching state: {PreviousState}, {CurrentState}");
             OnStateSwitch?.Invoke(PreviousState, CurrentState);
         }
 
@@ -52,7 +56,6 @@ namespace RNB.Core
         {
             PreviousState = CurrentState = initialState;
             _isInitialized = true;
-            Debug.Log($"Setting initial state: {initialState}");
         }
     }
 }

@@ -1,5 +1,6 @@
 using RNB.Core;
 using RNB.Core.Interfaces;
+using RNB.Player.Input;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,8 +13,11 @@ namespace RNB.Player.StateSwitcher
         OnGround,
         InAir
     }
-        
-    public class PlayerStateSwitcher : FSM_SwitcherBase<PlayerStates>, IInitializable
+
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
+    public class PlayerStateSwitcher : FSM_SwitcherBase<PlayerStates>
     {
         [SerializeField] private PlayerInputReader _inputReader;
 
@@ -50,7 +54,7 @@ namespace RNB.Player.StateSwitcher
         }
 
         #region IInitializable
-        public void Init()
+        public override void Init()
         {
             if (_groundHitDetector.IsHit)
             {

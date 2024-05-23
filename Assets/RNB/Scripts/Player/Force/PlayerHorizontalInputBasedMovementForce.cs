@@ -1,5 +1,6 @@
 using RNB.Core;
 using RNB.Core.Interfaces;
+using RNB.Player.Input;
 using RNB.Player.StateSwitcher;
 using System;
 using System.Collections;
@@ -8,6 +9,9 @@ using UnityEngine;
 
 namespace RNB.Player.Force
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class PlayerHorizontalInputBasedMovementForce : MonoBehaviour, IForce
     {
         #region IForce

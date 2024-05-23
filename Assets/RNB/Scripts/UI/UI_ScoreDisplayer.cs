@@ -6,6 +6,9 @@ using TMPro;
 
 namespace RNB.UI
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class UI_ScoreDisplayer : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _scoreText;

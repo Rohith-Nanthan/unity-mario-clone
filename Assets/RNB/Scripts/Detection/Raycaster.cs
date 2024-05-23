@@ -7,6 +7,11 @@ using UnityEngine;
 
 namespace RNB.Detection
 {
+    /// <summary>
+    /// Casts a ray from <see cref="_startingPosition"/> in the direction of <see cref="_raycastDirection"/>
+    /// to a fixed distance.
+    /// <br/>Author: rohith.nanthan
+    /// </summary>
     public class Raycaster : MonoBehaviour, IHitDetector
     {
         private IDirection _raycastDirection;

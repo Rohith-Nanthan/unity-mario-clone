@@ -11,7 +11,10 @@ namespace RNB.Force
     /// It holds a force value that will keep increasing indefinitely in Fixed Update at
     /// the rate of <see cref="_acclerationDueToGravity"/>. Use <see cref="CurrentGravityForce"/>
     /// to read the gravity force.
+    /// <br/>You can start falling down with gravity by calling <see cref="EnableGravity"/> and
+    /// stop falling down by calling <see cref="DisableGravity"/>
     /// <br/>If you want to have a upper limit for gravity force, please use <see cref="MaxCappedGravityForce"/>
+    /// <br/>Note: This only gives you force along Y
     /// <br/>Author: rohith.nanthan
     /// </summary>
     public class InfiniteGravityForce : MonoBehaviour, IForce

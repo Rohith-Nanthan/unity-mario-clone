@@ -6,6 +6,11 @@ using UnityEngine;
 
 namespace RNB.Collectables
 {
+    /// <summary>
+    /// It adds the collectable to the inventory of the entering object.
+    /// <br/>Eg: Used by coin to be collected when pllayer enters the trigger of coin
+    /// <br/>Author: rohith.nanthan
+    /// </summary>
     public class CollectablesConsumerForEnteringObject : MonoBehaviour
     {
         private ICollectable _collectable;

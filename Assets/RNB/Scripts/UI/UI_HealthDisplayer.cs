@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace RNB.UI
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class UI_HealthDisplayer : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _healthText;

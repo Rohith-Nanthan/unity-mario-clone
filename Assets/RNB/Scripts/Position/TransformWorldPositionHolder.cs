@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace RNB.Position
 {
+    /// <summary>
+    /// It holds the World position of the <see cref="_transformToFetchWorldPosition"/>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class TransformWorldPositionHolder : MonoBehaviour, IPosition
     {
         [SerializeField] private Transform _transformToFetchWorldPosition;

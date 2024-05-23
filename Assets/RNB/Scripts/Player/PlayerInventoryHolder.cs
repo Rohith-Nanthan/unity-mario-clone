@@ -1,10 +1,14 @@
 using RNB.Core.Interfaces;
+using RNB.Player.Scriptables;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RNB.Player
 {
+    /// <summary>
+    /// Author: rohith.nanthan
+    /// </summary>
     public class PlayerInventoryHolder : MonoBehaviour, IInventoryHolder
     {
         public IHealth Health { get; private set; }
